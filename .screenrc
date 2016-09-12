@@ -1,0 +1,48 @@
+#defutf8 on
+vbell on
+vbellwait 2
+autodetach on
+startup_message off
+
+shelltitle '$ |-------'
+#hardstatus alwayslastline "%{= WW}%s%{-}%{.Wk} %= %-w%{= BW} %t %{= .W9}%+w"
+
+#shell zsh
+defscrollback 9000
+defflow off
+escape ^z^z
+hardstatus alwayslastline "%{bw}%-Lw%{wk}%50>%n%f* %t%{-}%+Lw%<"
+caption always "%?%F%:%{wb}%?%3n %t %? [%h]%? %? [%u]%? [%H:%l] %c %s"
+#caption always "%?%F%{wr}%:%{wb}%?%3n %t %? [%h]%? %? [%u]%? %c"
+#
+bind ^x
+bind ^x stuff "\screen -X chdir \$PWD; \screen^M"
+
+
+bind ' ' other
+bind r eval 'echo "resize window [jk3mM=]"' 'command -c resize'
+bind -c resize ^] command
+bind -c resize j eval 'resize  +1' 'command -c resize'
+bind -c resize k eval 'resize  -1' 'command -c resize'
+bind -c resize 3 eval 'resize   3' 'command -c resize'
+bind -c resize m eval 'resize min' 'command -c resize'
+bind -c resize M eval 'resize max' 'command -c resize'
+bind -c resize = eval 'resize ='
+
+#bind R                eval 'caption always "%?%F%{wr}%:%{wb}%?%3n %t %? [%h]%? %?  [%u]%? %c"' 'command -c status_red'
+#bind -c status_red ^z eval 'caption always "%?%F%:%{wb}%?%3n %t %? [%h]%? %?  [%u]%? %c"' 'command'
+#bind -c command2 A eval 'command A' 'command -c resize' 'hardstatus alwayslastline "%{bw}%-Lw%{wk}%50>%n%f* %t%{-}%+Lw%<"'
+
+
+#bindkey ^z eval 'hstatus active' 'command'
+#bind p paste
+#bind ^p paste
+#bind ^[ bindkey ^z stuff ^z
+#bindkey ^[^z bindkey ^z
+#bind s colon 'sessionname ' 
+#bindkey ^t eval 'meta'
+#termcapinfo xterm 'hs:ts=\E]0;:fs=07:ds=\E]0;screen07'
+termcapinfo  xterm 'hs:ts=\E]2;:fs=\007:ds=\E]0;screen\007'
+bufferfile $HOME/.zsh/clipboard
+bind y eval screen 'stuff "xclip -i < $HOME/.zsh/clipboard;exit^M"'
+#bind 'd' setenv DISPLAY
